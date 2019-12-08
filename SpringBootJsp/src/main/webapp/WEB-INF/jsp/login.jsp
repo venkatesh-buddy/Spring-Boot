@@ -4,8 +4,7 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- <script src="js/jquery.min.js"></script> -->
 <head>
-	<title>Login Page</title>
-   <!--Made with love by Mutiullah Samim -->
+	<title>Login Page</title>   
    
 	<!--Bootsrap 4 CDN-->
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -29,7 +28,7 @@
 				</div> -->
 			</div>
 			<div class="card-body">
-				<form>
+				<form method="post" action="success">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
