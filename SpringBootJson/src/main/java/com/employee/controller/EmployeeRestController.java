@@ -20,15 +20,17 @@ public class EmployeeRestController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@GetMapping("/rest/employee/get/{id}")
+	/* To test XML or JSON in postman headers
+	 * give key as "Accept", value as "application/xml" or "application/json"
+	 * if you hit the get request in browser which has json and xml in produces by default returns xml response
+	 */
+	@GetMapping(path="/rest/employee/get/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public Employee getEmployeeByID(@PathVariable("id") int id) {
 		return employeeService.retrieve(id);
 	}
 	
-	//Testing returning xml - yet to do
-	@GetMapping(path="/rest/employee/getAll", produces = {MediaType.APPLICATION_JSON_VALUE})
-	//Returning is List is supported with JSON response only
-	//If you want XML, then add a wrapper class as Root XML element, for example EmployeeList
+	
+	@GetMapping(path="/rest/employee/getAll", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAll();
 	}
