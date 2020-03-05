@@ -1,5 +1,6 @@
 package com.boot.book.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class BookController {
 		return bookRepository.findById(id);
 	}
 	
+	@GetMapping("/books")
+	public List<Book> findAllBook(){
+		return bookRepository.findAll();
+	}
 	//http://localhost:8080/delete/580
 	@DeleteMapping("/delete/{id}")
 	public String deleteBook(@PathVariable int id){
