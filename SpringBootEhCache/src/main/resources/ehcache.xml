@@ -15,8 +15,9 @@
 	           transactionalMode="off" > -->
 	           
 	           <cache alias="productsCache">
-        			<key-type>java.lang.Long</key-type>
-        			<value-type>com.cache.ehcache.model.Product</value-type>
+	           <!-- commented since key-type causing exception while update product yet to figure out the issue -->
+        			<!-- <key-type>java.lang.Long</key-type>
+        			<value-type>com.cache.ehcache.model.Product</value-type> -->
 			        <expiry>
 			            <ttl unit="seconds">1000</ttl>
 			        </expiry>

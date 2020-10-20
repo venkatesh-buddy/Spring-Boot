@@ -44,8 +44,8 @@ public class ProductService {
      * @return
      */
     // @Cacheable annotation adds the caching behaviour. 
-    // If multiple requests are received, then the method won't be repeatedly executed, instead, the results are shared from cached storage.
-    @Cacheable(value="productsCache", key="#p0")
+    // If multiple requests are received, then the method won't be repeatedly executed, instead, the results are shared from cached storage.	
+    @Cacheable(value="productsCache")
     public Optional<Product> getProductById(Long productId) {
         return Optional.of(prepo.get(productId));
     }
@@ -56,11 +56,13 @@ public class ProductService {
      * @param productName
      * @return
      */
-    // @CachePut annotation updates the cached value.
-    @CachePut(value="productsCache")
+    // @CachePut annotation updates the cached value.    
+    @CachePut(value = "productsCache")
     public Product updateProductById(Product product, String productName) {
-        product.setName(productName);
-        prepo.put(product.getId(), product); 
+    	Long id = product.getId();
+    	product.setId(id);
+        product.setName(productName);        
+        prepo.put(id, product); 
         return product;
     }
  
@@ -70,7 +72,7 @@ public class ProductService {
      */
     // @CacheEvict annotation removes one or all entries from cached storage.
     // <code>allEntries=true</code> attribute allows developers to purge all entries from the cache.
-    @CacheEvict(value="productsCache", key="#p0")
+    @CacheEvict(value="productsCache", allEntries = true)
     public void deleteProductById(Long productId) {
         prepo.remove(productId);
     }
